@@ -34,12 +34,17 @@ namespace combiner_policies
 /** \brief Exact time policy.
  *
  * This is a policy for the Combiner class. It will associate data from the connected sources when their ROS header
- * timestamp matches exactly. If an input has multiple data elements, the first one is considered only. The examined
- * data types must have an accessible ROS header, which is determined with the ros::message_traits templates.
+ * timestamp matches exactly. Each input source can itself be a tuple, but only the first element of each tuple will
+ * be examined to determine the timestamp. It must have an accessible ROS header, which is determined using the
+ * ros::message_traits template.
  *
- * The policy will discard unmatched data if it reaches a configurable age limit or exceeds the maximum queue size.
- * The resulting timestamps will be strictly increasing; remaining data with older timestamps will be discarded
- * whenever new data is emitted.
+ * The policy will discard unmatched data which exceeds configurable age limit or overflows the maximum queue size.
+ * The resulting timestamps will be strictly increasing if at least one of the inputs receives messages in correct temporal order.
+ * Whenever matched data is emitted, all queued inputs with older timestamps will be discarded.
+ *
+ * The filter will not output any data at all if the time lag between two inputs is larger than the maximum permissible age,
+ * or if the time lag requires more messages to be buffered than the maximum queue size permits. By default, the filter
+ * will buffer arbitrary many messages for at most one second.
  */
 template<typename... IOs>
 class ExactTime : public PolicyBase<IOs...>
@@ -50,8 +55,6 @@ public:
     using typename PolicyBase<IOs...>::IncomingTuples;
     using typename PolicyBase<IOs...>::OutgoingTuple;
     /** \brief Constructor.
-     *
-     * \arg \c max_age maximum age of any data in the queue
      *
      * \nothrow
      */
