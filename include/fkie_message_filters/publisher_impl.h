@@ -1,7 +1,7 @@
 /****************************************************************************
  *
  * fkie_message_filters
- * Copyright © 2018 Fraunhofer FKIE
+ * Copyright © 2018-2020 Fraunhofer FKIE
  * Author: Timo Röhling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -68,6 +68,29 @@ void Publisher<M, Translate>::advertise(ros::NodeHandle& nh, const std::string& 
     pub_ = nh.advertise(opts);
     update_subscriber_state();
 }
+
+template<class M, template<typename> class Translate>
+void Publisher<M, Translate>::advertise(ros::NodeHandle& nh, const std::string& topic, uint32_t queue_size, const ros::SubscriberStatusCallback& connect_cb, const ros::SubscriberStatusCallback& disconnect_cb, const ros::VoidConstPtr& tracked_object, bool latch, ros::CallbackQueueInterface* callback_queue) noexcept
+{
+    ros::AdvertiseOptions opts;
+    opts.init<M>(topic, queue_size,
+            [this, connect_cb](const ros::SingleSubscriberPublisher& ssp)
+            {
+                this->update_subscriber_state();
+                if (connect_cb) connect_cb(ssp);
+            },
+            [this, disconnect_cb](const ros::SingleSubscriberPublisher& ssp)
+            {
+                this->update_subscriber_state();
+                if (disconnect_cb) disconnect_cb(ssp);
+            }
+    );
+    opts.latch = latch;
+    opts.callback_queue = callback_queue;
+    opts.tracked_object = tracked_object;
+    pub_ = nh.advertise(opts);
+    update_subscriber_state();
+}    
 
 template<class M, template<typename> class Translate>
 void Publisher<M, Translate>::receive (const typename Translate<M>::FilterType& m) noexcept
