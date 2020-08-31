@@ -1,7 +1,7 @@
 /****************************************************************************
  *
  * fkie_message_filters
- * Copyright © 2018 Fraunhofer FKIE
+ * Copyright © 2018-2020 Fraunhofer FKIE
  * Author: Timo Röhling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -67,9 +67,11 @@ class UserFilter;
  * \endcode
  * 
  * In your processing function, you can call the callback function as often as you want, or even not at all. There is
- * no requirement that each input produces exactly one output.
+ * no requirement that each input produces exactly one output. When you have no output at all, or
+ * the output is the same as the input, you should consider the SimpleUserFilter instead, which is easier to set up.
  * 
- * The filter will throw a std::bad_function_call exception if it is invoked without a user-defined processing function.
+ * The filter will throw a \c std::bad_function_call exception if it is invoked without a user-defined processing function.
+ * 
  */
 #ifndef DOXYGEN
 template<class... Inputs, class... Outputs>

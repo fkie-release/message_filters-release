@@ -1,7 +1,7 @@
 /****************************************************************************
  *
  * fkie_message_filters
- * Copyright © 2018 Fraunhofer FKIE
+ * Copyright © 2018-2020 Fraunhofer FKIE
  * Author: Timo Röhling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -32,7 +32,7 @@ using Connection = boost::signals2::connection;
 
 /** \brief Group multiple data types as filter input or output.
  *
- * This is a helper class to disambiguate filter definitions with multiple inputs and outputs. Consider the following
+ * This is a helper class to disambiguate filter definitions with N-ary inputs and outputs. Consider the following
  * hypothetical example:
  * \code
  * Filter<Type1, Type2, Type3> flt;

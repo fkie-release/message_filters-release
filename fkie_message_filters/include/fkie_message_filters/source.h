@@ -1,7 +1,7 @@
 /****************************************************************************
  *
  * fkie_message_filters
- * Copyright © 2018 Fraunhofer FKIE
+ * Copyright © 2018-2020 Fraunhofer FKIE
  * Author: Timo Röhling
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,11 +31,12 @@ template<typename...> class Sink;
 
 /** \brief Base class for data providers.
  *
- * %In the message filter library, all data flows from sources to sinks. The sources are data providers, which may either
+ * %In the message filter library, all data flows from sources to sinks. The sources are providers of data, which may either
  * be generated synthetically or gathered from other sources, such as ROS topics.
  *
  * Derived classes need to call the send() method to pass actual data to the connected sinks. This class does
- * nothing but track which sinks have been connected.
+ * nothing but track which sinks have been connected.  The send() method takes the same number and types of arguments as
+ * specified in the template instantiation.
  *
  * \sa Sink
  */
@@ -44,7 +45,7 @@ class Source : public virtual FilterBase
 {
     template<typename...> friend class Sink;
 public:
-    /** \brief Number of outputs. */
+    /** \brief Number of output arguments. */
     static constexpr std::size_t NUM_OUTPUTS = sizeof...(Outputs);
     /** \brief Grouped output types.
      *
