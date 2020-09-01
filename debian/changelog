@@ -1,0 +1,29 @@
+ros-melodic-fkie-message-filters (1.1.1-1stretch) stretch; urgency=high
+
+  * Fix compilation bug with RosMessage adapter
+  * Contributors: Timo Röhling
+
+ -- Timo Röhling <timo.roehling@fkie.fraunhofer.de>  Mon, 31 Aug 2020 22:00:00 -0000
+
+ros-melodic-fkie-message-filters (1.1.0-1stretch) stretch; urgency=high
+
+  * Rewrite documentation
+  * Add test for subscriber callbacks
+  * Use "nullptr" instead of "0"
+  * Add rostest testsuite for tests involving ROS publish/subscribe
+  * Add subscriber status callback support
+  * Contributors: Timo Röhling
+
+ -- Timo Röhling <timo.roehling@fkie.fraunhofer.de>  Sun, 30 Aug 2020 22:00:00 -0000
+
+ros-melodic-fkie-message-filters (1.0.1-1stretch) stretch; urgency=high
+
+  * Bugfix for ODR violation
+  * Improve documentation
+  * Rename helper function for more clarity
+  * Reword documentation to be a bit more precise
+  * Contributors: Timo Röhling
+
+ -- Timo Röhling <timo.roehling@fkie.fraunhofer.de>  Tue, 17 Sep 2019 22:00:00 -0000
+
+
