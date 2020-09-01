@@ -2,6 +2,11 @@
 Changelog for package fkie_message_filters
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.1.1 (2020-09-01)
+------------------
+* Fix compilation bug with RosMessage adapter
+* Contributors: Timo Röhling
+
 1.1.0 (2020-08-31)
 ------------------
 * Rewrite documentation
