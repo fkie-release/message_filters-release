@@ -1,3 +1,26 @@
+## fkie_message_filters (melodic) - 1.1.1-1
+
+The packages in the `fkie_message_filters` repository were released into the `melodic` distro by running `/usr/bin/bloom-release --ros-distro melodic fkie_message_filters` on `Tue, 01 Sep 2020 12:17:53 -0000`
+
+The `fkie_message_filters` package was released.
+
+Version of package(s) in repository `fkie_message_filters`:
+
+- upstream repository: https://github.com/fkie/message_filters.git
+- release repository: https://github.com/fkie-release/message_filters-release.git
+- rosdistro version: `1.1.0-1`
+- old version: `1.1.0-1`
+- new version: `1.1.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.9.8`
+- catkin_pkg version: `0.4.22`
+- rosdep version: `0.19.0`
+- rosdistro version: `0.8.2`
+- vcstools version: `0.1.42`
+
+
 ## fkie_message_filters (noetic) - 1.1.0-1
 
 The packages in the `fkie_message_filters` repository were released into the `noetic` distro by running `/usr/bin/bloom-release --rosdistro noetic --track noetic fkie_message_filters` on `Mon, 31 Aug 2020 11:22:32 -0000`
