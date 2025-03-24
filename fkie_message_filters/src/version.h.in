@@ -17,29 +17,15 @@
  * limitations under the License.
  *
  ****************************************************************************/
-#ifndef INCLUDE_FKIE_MESSAGE_FILTERS_SIMPLE_USER_FILTER_IMPL_H_
-#define INCLUDE_FKIE_MESSAGE_FILTERS_SIMPLE_USER_FILTER_IMPL_H_
 
-#include "simple_user_filter.h"
+#ifndef INCLUDE_FKIE_MESSAGE_FILTERS_VERSION_H_
+#define INCLUDE_FKIE_MESSAGE_FILTERS_VERSION_H_
 
-namespace fkie_message_filters
-{
+#define FKIE_MESSAGE_FILTERS_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define FKIE_MESSAGE_FILTERS_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define FKIE_MESSAGE_FILTERS_VERSION_PATCH @PROJECT_VERSION_PATCH@
+#define FKIE_MESSAGE_FILTERS_VERSION       "@PROJECT_VERSION@"
 
-template<typename... Inputs>
-void SimpleUserFilter<Inputs...>::set_processing_function(const ProcessingFunction& f) noexcept
-{
-    f_ = f;
-}
+#include <rclcpp/version.h>
 
-template<typename... Inputs>
-void SimpleUserFilter<Inputs...>::receive(helpers::argument_t<Inputs>... in)
-{
-    if (f_(in...))
-    {
-        this->send(helpers::maybe_move(in)...);
-    }
-}
-
-}  // namespace fkie_message_filters
-
-#endif /* INCLUDE_FKIE_MESSAGE_FILTERS_SIMPLE_USER_FILTER_IMPL_H_ */
+#endif
